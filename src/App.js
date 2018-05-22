@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { initMockupData } from './store/actions';
 import { AppContainer } from './styles'
+import { AddProductPage } from './pages';
 const mockupProductData = [
   {
     "_id": "5b043f350bd1ae01c9911465",
@@ -42,7 +43,7 @@ class App extends Component {
   render() {
     return (
       <AppContainer>
-        Hi!
+        <AddProductPage />
       </AppContainer>
     );
   }
