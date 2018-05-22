@@ -7,9 +7,14 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import store from './store';
 
+if(module.hot){
+    module.hot.accept()
+}
+
 render((
     <Provider store={store}>
         <App />
     </Provider>
 ), document.getElementById('root'));
 registerServiceWorker();
+
