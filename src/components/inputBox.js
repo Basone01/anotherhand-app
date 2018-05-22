@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const InputBoxContainer = styled.div `
+const InputBoxContainer = styled.label `
     display:flex;
     font-size:16px;
-    
+    font-weight:bold;
+    border-bottom:1px solid rgba(0,0,0,0.2);
     &>input{
         flex-grow:1;
-        padding:0.5em 1em;
+        padding:14px 24px 12px 24px;
         border:none;
         outline:none;
         text-align:end;
@@ -15,7 +16,7 @@ const InputBoxContainer = styled.div `
     &>span{
         display:flex;
         align-items:center;
-        padding:0.5em 1em;
+        padding:14px 24px 12px 24px;
     }    
 `;
 
@@ -27,6 +28,7 @@ const InputBox = ({
         <InputBoxContainer>
             <span>{prefix}</span>
             <input type="text" {...rest}/>
+
         </InputBoxContainer>
     )
 }

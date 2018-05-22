@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {PageContainer, MainContainer, TopNavbarContainer, BottomNavbarContainer} from '../styles/index'
-
+import InputBox from 'components/inputBox'
+import InputTextAreaBox from 'components/inputTextAreaBox'
 
 
 export class AddProductPage extends Component {
@@ -9,14 +10,13 @@ export class AddProductPage extends Component {
         return (
             <PageContainer>
                 <TopNavbarContainer>
-                    <h1>Top</h1>
+                    <h1>เพิ่มสินค้าใหม่</h1>
                 </TopNavbarContainer>
                 <MainContainer>
-                    
-                    <input type="text"/>
-                    <input type="text"/>
-                    <input type="text"/>
-                    <input type="text"/>
+                <InputBox prefix="ชื่อ :" placeholder="ใส่ชื่อสินค้าที่ต้องการ"/>
+                <InputBox prefix="ราคา :" placeholder="ใส่ราคาสินค้าที่ต้องการ"/>
+                <InputTextAreaBox prefix="รายละเอียด :" placeholder="ใส่อะไรก็ใส่มาเหอะ"/>
+                
 
                 </MainContainer>
                 <BottomNavbarContainer>
