@@ -28,7 +28,6 @@ const InputBox = ({
         <InputBoxContainer>
             <span>{prefix}</span>
             <input type="text" {...rest}/>
-
         </InputBoxContainer>
     )
 }

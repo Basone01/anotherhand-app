@@ -8,7 +8,6 @@ const InputTextAreaBoxContainer = styled.label `
     font-weight:bold;
     border-bottom:1px solid rgba(0,0,0,0.2);
     &>textarea{
-        flex-grow:1;
         padding:16px 24px;
         border:none;
         outline:none;
@@ -34,8 +33,7 @@ const InputTextAreaBox = ({
     return (
         <InputTextAreaBoxContainer>
             <span>{prefix}</span>
-            <textarea name="" rows="5"  {...rest}></textarea>
-
+            <textarea rows="5" {...rest}></textarea>
         </InputTextAreaBoxContainer>
     )
 }
