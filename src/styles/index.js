@@ -50,7 +50,6 @@ const BaseNavbarContainer = styled.div`
     min-height:42px;
     background-color:#eee;  
     box-shadow:0 0 1px rgba(0,0,0,0.5);
-    padding:16px 24px 0px 24px;
     
 `;
 
@@ -58,12 +57,14 @@ export const BottomNavbarContainer = BaseNavbarContainer.extend`
     bottom: 0;
     left:0;
     right:0;
-
+    padding:12px 24px 0 24px;
+    
+    
 `;
 
 export const TopNavbarContainer = BaseNavbarContainer.extend`
     top: 0;
     left:0;
     right:0;
-
+    padding:16px 24px 0px 24px;
 `;
