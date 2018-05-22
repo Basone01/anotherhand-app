@@ -1,0 +1,2 @@
+export const INIT_MOCKUP_DATA = "INIT_MOCKUP_DATA";
+
