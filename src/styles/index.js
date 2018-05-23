@@ -40,7 +40,7 @@ export const AppContainer = styled.div`
     max-height:96vh;
     margin:2vh auto;
     overflow-x:hidden;
-    border-radius:12px;
+    border-radius:8px;
     box-shadow:0 0 1px black;
     &> ${PageContainer} {
         flex-grow:1;
@@ -49,12 +49,13 @@ export const AppContainer = styled.div`
 
 
 const BaseNavbarContainer = styled.div`
-    display: block;
+    display: flex;
     position:relative;
     max-height:42px;
     min-height:42px;
     background-color:#eee;  
     box-shadow:0 0 1px rgba(0,0,0,0.5);
+    z-index:10;
     
 `;
 
