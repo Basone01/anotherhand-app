@@ -4,10 +4,12 @@ import styled from 'styled-components';
 const InputBoxContainer = styled.label `
     display:flex;
     font-size:16px;
+    flex-shrink:0;
     font-weight:bold;
     border-bottom:1px solid rgba(0,0,0,0.2);
     &>input{
         flex-grow:1;
+        flex-shrink:0;
         padding:14px 24px 12px 24px;
         border:none;
         outline:none;
@@ -15,6 +17,8 @@ const InputBoxContainer = styled.label `
     }
     &>span{
         display:flex;
+        flex-shrink:0;
+        
         align-items:center;
         padding:14px 24px 12px 24px;
     }    
