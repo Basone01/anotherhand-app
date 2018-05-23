@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const InputBoxContainer = styled.label `
     display:flex;
     font-size:16px;
-    flex-shrink:0;
     font-weight:bold;
     border-bottom:1px solid rgba(0,0,0,0.2);
     &>input{
