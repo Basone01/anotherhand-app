@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 
-export const MainContainer = styled.div`
+export const ScrollableContainer = styled.div`
     display:flex;
     flex-direction:column;
     align-items:stretch;
     justify-content:flex-start;
+    flex-grow:1;
     background-color:#fff;
     overflow-x:hidden;
     overflow-y:scroll;
@@ -14,12 +15,20 @@ export const MainContainer = styled.div`
     }
 `;
 
+export const MainContainer = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    overflow-y:visible;
+`;
+
 export const PageContainer = styled.div`
     display:flex;
     flex-direction:column;
     align-items:stretch;
     position:relative;
-    &> ${MainContainer} {
+    &> ${ScrollableContainer} {
         flex-grow:1;
     }
     
