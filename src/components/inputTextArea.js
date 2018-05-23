@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const InputTextAreaBoxContainer = styled.label `
+const InputTextAreaContainer = styled.label `
     display:flex;
     flex-direction:column;
     font-size:16px;
@@ -26,16 +26,16 @@ const InputTextAreaBoxContainer = styled.label `
     }    
 `;
 
-const InputTextAreaBox = ({
+const InputTextArea = ({
     prefix,
     ...rest
 }) => {
     return (
-        <InputTextAreaBoxContainer>
+        <InputTextAreaContainer>
             <span>{prefix}</span>
             <textarea rows="5" {...rest}></textarea>
-        </InputTextAreaBoxContainer>
+        </InputTextAreaContainer>
     )
 }
 
-export default InputTextAreaBox
+export default InputTextArea
