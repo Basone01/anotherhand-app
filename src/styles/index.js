@@ -15,13 +15,6 @@ export const ScrollableContainer = styled.div`
     }
 `;
 
-export const MainContainer = styled.div`
-    display:flex;
-    flex-direction:column;
-    align-items:stretch;
-    justify-content:flex-start;
-    overflow-y:visible;
-`;
 
 export const PageContainer = styled.div`
     display:flex;
