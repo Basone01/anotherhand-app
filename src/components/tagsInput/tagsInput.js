@@ -36,7 +36,15 @@ const enhance = compose(
         handleFocus: ({ setFocused }) => e => {
             setFocused( true );
         },
-        handleBlur: ({ setFocused }) => e => {
+        handleBlur: ({ setFocused,setInput,setItems,items }) => e => {
+            const {value} = e.target;
+            if (value === '' || items.includes(value)) {
+                setInput('');                
+                return;
+            }
+            //add new tag 
+            setItems([...items,value]);
+            setInput('');        
             setFocused( false );
         },
         handleRemoveClick:({setItems,items})=>(index)=>{
