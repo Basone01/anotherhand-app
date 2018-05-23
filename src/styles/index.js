@@ -13,6 +13,9 @@ export const ScrollableContainer = styled.div`
     &::-webkit-scrollbar {
         display: none;
     }
+    &>*{
+        flex-shrink:0;
+    }
 `;
 
 
@@ -35,10 +38,10 @@ export const AppContainer = styled.div`
     max-width:360px;
     min-height:96vh;
     max-height:96vh;
-    border:1px solid #222;
     margin:2vh auto;
     overflow-x:hidden;
     border-radius:12px;
+    box-shadow:0 0 1px black;
     &> ${PageContainer} {
         flex-grow:1;
     }
