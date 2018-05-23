@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {PageContainer, MainContainer, TopNavbarContainer, BottomNavbarContainer} from '../styles/index'
+import {PageContainer, MainContainer, TopNavbarContainer} from '../styles/index'
 import InputBox from 'components/inputBox'
 import InputTextAreaBox from 'components/inputTextAreaBox'
 import TagsInput from 'components/tagsInput'
