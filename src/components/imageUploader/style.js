@@ -5,45 +5,46 @@ export const UploadBoxContainer = styled.div `
     flex-wrap:wrap;
     align-items:flex-start;
     justify-content:flex-start;
-    padding:24px 18px;
+    padding:18px 16px;
     &>*{
-        &:nth-child(3n-1){
-            margin-left:12px;
-            margin-right:12px;
-            
-        }
+        margin-right:12px;
+        &:last-child{
+            margin-right:0;
+        }       
     }
 
 `;
 
-
 export const Image = styled.img `
-    box-sizing:border-box;        
-    height:100px;
+    width:100%;
+    height:100%;
     object-fit:cover;
-    object-position:center;
+    object-position:center; 
+`;
+
+export const ImageContainerWithOverlay = styled.span `
+    position: relative;
+    box-sizing:border-box;        
+    overflow:hidden;
+    width:100px;
+    height:100px;
     padding:8px;
     border-radius:4px;
     box-shadow:0 0 1px black;
-    width:100px;
     transition:opacity 0.3s;
-    margin-bottom:12px;    
     &:hover{
         opacity:0.7;
-    }
-`;
-
-
-
-export const ImageContainerWithOverlay = styled.span`
-    position: relative;
+        &>span{
+            opacity:1;
+        }  
+    }    
     &>span{
         cursor:pointer;
         position:absolute;
         top:0;
         left:0;
         width: 100%;
-        height:100px;
+        height:100%;
         border-radius:4px;
         background-color:rgba(0,0,0,0.3);
         font-size:48px;
@@ -55,17 +56,16 @@ export const ImageContainerWithOverlay = styled.span`
         opacity:0;
         transition:opacity 0.3s;
     }
-    &:hover>span{
-        opacity:1;
-    }  
+    
 `;
 
-
-export const UploaderButton = styled.label`
+export const UploaderButton = styled.label `
     display:flex;
     height:100px;
     max-width:100px;
+    width:100px;
     flex-grow:1;
+    flex-shrink:0;
     padding:12px;
     justify-content:center;
     align-items:center;

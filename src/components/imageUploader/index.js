@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
 import {UploadBoxContainer, UploaderButton, Image, ImageContainerWithOverlay} from './style';
+import {HorizontalScrollableContainer} from 'styles';
 export default class InputFile extends Component {
     state = {
-        files: ["https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg"]
+        files: ["https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg"
+    ]
     }
     constructor(props) {
         super(props)
@@ -54,23 +58,24 @@ export default class InputFile extends Component {
 
     render() {
         return (
-            <UploadBoxContainer>
-                {this.renderSelectedImage()}
-                <UploaderButton>
-                    <span
-                        style={{
-                        fontSize: 12,
-                        color: "rgba(0,0,0,0.5)"
-                    }}>+ เพิ่มรูปภาพ</span>
-                    <input
-                        name='file'
-                        ref={this.inputRef}
-                        type="file"
-                        multiple
-                        onChange={() => this.handleFileChange()}/>
-                </UploaderButton>
-
-            </UploadBoxContainer>
+            <HorizontalScrollableContainer>
+                <UploadBoxContainer>
+                    {this.renderSelectedImage()}
+                    <UploaderButton>
+                        <span
+                            style={{
+                            fontSize: 12,
+                            color: "rgba(0,0,0,0.5)"
+                        }}>+ เพิ่มรูปภาพ</span>
+                        <input
+                            name='file'
+                            ref={this.inputRef}
+                            type="file"
+                            multiple
+                            onChange={() => this.handleFileChange()}/>
+                    </UploaderButton>
+                </UploadBoxContainer>
+            </HorizontalScrollableContainer>
         )
     }
 }
