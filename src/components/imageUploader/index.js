@@ -2,12 +2,6 @@ import React, {Component} from 'react'
 import {UploadBoxContainer, UploaderButton, Image, ImageContainerWithOverlay} from './style';
 import {HorizontalScrollableContainer} from 'styles';
 export default class InputFile extends Component {
-    state = {
-        files: ["https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg",
-        "https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg",
-        "https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg"
-    ]
-    }
     constructor(props) {
         super(props)
         this.inputRef = React.createRef();
@@ -15,23 +9,20 @@ export default class InputFile extends Component {
 
     handleFileChange() {
         const input = this.inputRef.current
+        const {images, onChange} = this.props;
         //iterate all file
         for (let i = 0; i < input.files.length; i++) {
             var reader = new FileReader();
+            //bind event
             reader.onload = (e) => {
                 const newfile = e.target.result
                 //don't add if it's a duplicate image or not an image
-                if (this.state.files.includes(newfile) || !e.target.result.match(/^data:image/)) {
+                if (images.includes(newfile) || !e.target.result.match(/^data:image/)) {
                     input.value = ''
                     return;
                 }
-                //add to state
-                this.setState(({files}) => ({
-                    files: [
-                        ...files,
-                        newfile
-                    ]
-                }))
+                onChange(newfile)
+                
             };
             //start read file to base64
             reader.readAsDataURL(input.files[i]);
@@ -39,16 +30,14 @@ export default class InputFile extends Component {
 
     }
     removeImage(index) {
-        //removeClickedImg
-        this.setState(({files}) => ({
-            files: files.filter((file, i) => i !== index)
-        }))
+        const {onRemove, images} = this.props;
+        onRemove(images.filter((images, i) => i !== index))
     }
     renderSelectedImage() {
-        const {files} = this.state;
-        return files.map((file, i) => (
+        const {images} = this.props;
+        return images.map((image, i) => (
             <ImageContainerWithOverlay key={i}>
-                <Image src={file} alt={file}/>
+                <Image src={image} alt="ERROR"/>
                 <span onClick={() => this.removeImage(i)}>
                     <span>X</span>
                 </span>
@@ -68,7 +57,7 @@ export default class InputFile extends Component {
                             color: "rgba(0,0,0,0.5)"
                         }}>+ เพิ่มรูปภาพ</span>
                         <input
-                            name='file'
+                            name='images'
                             ref={this.inputRef}
                             type="file"
                             multiple
