@@ -81,6 +81,7 @@ export const AppContainer = styled.div `
 const BaseNavbarContainer = styled.div `
     display: flex;
     position:relative;
+    align-items:center;
     max-height:42px;
     min-height:42px;
     background-color:#eee;  
@@ -93,7 +94,7 @@ export const BottomNavbarContainer = BaseNavbarContainer.extend `
     bottom: 0;
     left:0;
     right:0;
-    padding:12px 24px 0 24px;
+    padding:0 24px;
     
     
 `;
@@ -102,5 +103,5 @@ export const TopNavbarContainer = BaseNavbarContainer.extend `
     top: 0;
     left:0;
     right:0;
-    padding:16px 24px 0px 24px;
+    padding:0 24px;
 `;
