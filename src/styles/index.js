@@ -1,7 +1,25 @@
-import styled from 'styled-components';
-
-
-export const ScrollableContainer = styled.div`
+import styled,{css} from 'styled-components';
+const ScrollBarStyle = css`
+    &::-webkit-scrollbar {
+        display:${props => props.noScrollbar?'none':'auto'};
+        height:8px;
+        width:4px;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.1);
+        border-radius:4px;
+        &:hover {
+            background: rgba(0,0,0,0.2); 
+        }
+    }
+`
+export const ScrollableContainer = styled.div `
     display:flex;
     flex-direction:column;
     align-items:stretch;
@@ -10,16 +28,29 @@ export const ScrollableContainer = styled.div`
     background-color:#fff;
     overflow-x:hidden;
     overflow-y:scroll;
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    ${ScrollBarStyle}
     &>*{
         flex-shrink:0;
     }
 `;
 
+export const HorizontalScrollableContainer = styled.div `
+    display:flex;
+    align-items:stretch;
+    justify-content:flex-start;
+    flex-grow:1;
+    background-color:#fff;
+    overflow-y:hidden;
+    overflow-x:scroll;
+    
+    ${ScrollBarStyle}
 
-export const PageContainer = styled.div`
+    &>*{
+        flex-shrink:0;
+    }
+`;
+
+export const PageContainer = styled.div `
     display:flex;
     flex-direction:column;
     align-items:stretch;
@@ -30,7 +61,7 @@ export const PageContainer = styled.div`
     
 `;
 
-export const AppContainer = styled.div`
+export const AppContainer = styled.div `
     display:flex;
     flex-direction:column;
     align-items:stretch;
@@ -47,8 +78,7 @@ export const AppContainer = styled.div`
     }
 `;
 
-
-const BaseNavbarContainer = styled.div`
+const BaseNavbarContainer = styled.div `
     display: flex;
     position:relative;
     max-height:42px;
@@ -59,7 +89,7 @@ const BaseNavbarContainer = styled.div`
     
 `;
 
-export const BottomNavbarContainer = BaseNavbarContainer.extend`
+export const BottomNavbarContainer = BaseNavbarContainer.extend `
     bottom: 0;
     left:0;
     right:0;
@@ -68,7 +98,7 @@ export const BottomNavbarContainer = BaseNavbarContainer.extend`
     
 `;
 
-export const TopNavbarContainer = BaseNavbarContainer.extend`
+export const TopNavbarContainer = BaseNavbarContainer.extend `
     top: 0;
     left:0;
     right:0;
