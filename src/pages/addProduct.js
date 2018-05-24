@@ -7,14 +7,11 @@ import InputTextArea from 'components/inputTextArea';
 import TagsInput from 'components/tagsInput';
 import ImageUploader from 'components/imageUploader';
 import SizeInput from 'components/sizeInput';
-
+import BackIcon from 'react-icons/lib/md/arrow-back'
+import SubmitIcon from 'react-icons/lib/md/check'
 export class AddProductPage extends Component {
 	state = {
-		images: [
-			'https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg',
-			'https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg',
-			'https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg'
-		],
+		images: [],
 		name: '',
 		price: 0,
 		stock: 0,
@@ -83,6 +80,19 @@ export class AddProductPage extends Component {
 	}
 
 	submit() {
+		const { sizes, images, name } = this.state;
+		if (name === '') {
+			console.error('Name is Required');
+			return;
+		}
+		if (images.length === 0) {
+			console.error('Image is Required');
+			return;
+		}
+		if (sizes.filter((size) => size.size === '').length > 0) {
+			console.error('Size is Required');
+			return;
+		}
 		console.log(this.state);
 	}
 
@@ -107,7 +117,7 @@ export class AddProductPage extends Component {
 		return (
 			<PageContainer>
 				<TopNavbarContainer>
-					<IconButton>{'<'}</IconButton>
+					<IconButton><BackIcon size={20}/></IconButton>
 					<span
 						style={{
 							flexGrow: 1,
@@ -116,7 +126,7 @@ export class AddProductPage extends Component {
 					>
 						เพิ่มสินค้าใหม่
 					</span>
-					<IconButton onClick={() => this.submit()}>{'>'}</IconButton>
+					<IconButton onClick={() => this.submit()}><SubmitIcon size={20}/></IconButton>
 				</TopNavbarContainer>
 				<ScrollableContainer>
 					<ImageUploader

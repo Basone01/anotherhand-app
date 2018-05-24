@@ -94,7 +94,7 @@ export const BottomNavbarContainer = BaseNavbarContainer.extend `
     bottom: 0;
     left:0;
     right:0;
-    padding:0 24px;
+    padding:0 12px;
     
     
 `;
@@ -103,5 +103,5 @@ export const TopNavbarContainer = BaseNavbarContainer.extend `
     top: 0;
     left:0;
     right:0;
-    padding:0 24px;
+    padding:0 12px;
 `;
