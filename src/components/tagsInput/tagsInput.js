@@ -64,10 +64,10 @@ const enhance = compose(
 );
 
 
-const TagInput = ({input, prefix,placeholderOrTags, handleBlur, handleFocus, handleInputChange, handleInputKeyDown }) => (
-    <label>
+const TagInput = ({style,input, prefix,placeholderOrTags, handleBlur, handleFocus, handleInputChange, handleInputKeyDown }) => (
+    <label >
         <Prefix>{prefix}</Prefix>
-        <TagsInputContainer >
+        <TagsInputContainer style={style}>
             {placeholderOrTags}
             <TagsInputText
                 onFocus={handleFocus}
