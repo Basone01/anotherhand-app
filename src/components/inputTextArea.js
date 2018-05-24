@@ -33,7 +33,9 @@ const InputTextArea = ({
     return (
         <InputTextAreaContainer>
             <span>{prefix}</span>
-            <textarea rows="5" {...rest}></textarea>
+            <textarea 
+                rows="5" 
+                {...rest}/>
         </InputTextAreaContainer>
     )
 }
