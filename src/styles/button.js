@@ -14,3 +14,16 @@ export const BlockButton = styled.a`
         background-color:rgba(0,0,0,0.1);  
     }
 `;
+
+export const IconButton = styled.a`
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    width: 32px;
+    height: 32px;
+    cursor:pointer;
+    transition:color 0.25s;
+    &:hover{
+        color:white;  
+    }
+`;
