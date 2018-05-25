@@ -28,7 +28,6 @@ export const ScrollableContainer = styled.div`
 	background-color: #fff;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	padding: 8px 0;
 	${ScrollBarStyle} &>* {
 		flex-shrink: 0;
 	}
