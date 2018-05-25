@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ProductList from 'components/productList';
-import { TopNavbarContainer, HorizontalScrollableContainer, PageContainer, BottomNavbarContainer } from '../styles';
+import { TopNavbarContainer, ScrollableContainer, PageContainer, BottomNavbarContainer } from '../styles';
 
 export class ProductStockPage extends Component {
 	static propTypes = {};
@@ -17,9 +17,9 @@ export class ProductStockPage extends Component {
 		return (
 			<PageContainer>
 				<TopNavbarContainer>สินค้าของคุณ</TopNavbarContainer>
-				<HorizontalScrollableContainer>
+				<ScrollableContainer>
 					<ProductList />
-				</HorizontalScrollableContainer>
+				</ScrollableContainer>
 				<BottomNavbarContainer>
 					<NavLink to="/add">เพิ่มสินค้า</NavLink>
 				</BottomNavbarContainer>
