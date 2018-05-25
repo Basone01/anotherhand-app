@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { createProduct } from 'actions';
+import BackButton from 'components/backButton';
 import ImageUploader from 'components/imageUploader';
 import InputBox from 'components/inputBox';
 import InputTextArea from 'components/inputTextArea';
@@ -6,9 +8,8 @@ import React, { Component } from 'react';
 import SizeInput from 'components/sizeInput';
 import SubmitIcon from 'react-icons/lib/md/check';
 import TagsInput from 'components/tagsInput';
-import BackButton from 'components/backButton';
+
 import { BlockButton, IconButton } from '../styles/button';
-import { createProduct } from 'actions';
 import { PageContainer, ScrollableContainer, TopNavbarContainer } from '../styles';
 
 export class AddProductPage extends Component {
