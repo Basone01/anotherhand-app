@@ -5,18 +5,17 @@ import './styles/global';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store';
-
-if (module.hot) {
-	module.hot.accept();
-}
+import { BrowserRouter } from 'react-router-dom';
 
 const store = configureStore();
 store.runSaga();
 
 render(
-	<Provider store={store}>
-		<App/>
-	</Provider>,
+	<BrowserRouter>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</BrowserRouter>,
 	document.getElementById('root')
 );
 registerServiceWorker();
