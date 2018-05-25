@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-
+import {inputReset} from 'styles/css'
 const Label = styled.span `
     display:flex;
     flex-shrink:0;
@@ -21,14 +21,7 @@ const Input = styled.input `
     max-width: 100%;
     width: 100%;
     box-sizing:border-box;
-    border:none;
-    outline:none;
-    text-align:end;
-    &[type=number]::-webkit-inner-spin-button, 
-    &[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
+    ${inputReset};
 `
 
 const InputBoxContainer = styled.label `
