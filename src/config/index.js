@@ -1,3 +1,3 @@
 module.exports = {
-	API_ENDPOINT: 'http://127.0.0.1/api'
+	API_ENDPOINT: process.env.NODE_ENV === 'development' ? 'http://127.0.0.1/api' : '/api'
 };
