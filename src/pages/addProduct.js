@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import BackIcon from 'react-icons/lib/md/arrow-back';
 import ImageUploader from 'components/imageUploader';
 import InputBox from 'components/inputBox';
 import InputTextArea from 'components/inputTextArea';
@@ -7,10 +6,10 @@ import React, { Component } from 'react';
 import SizeInput from 'components/sizeInput';
 import SubmitIcon from 'react-icons/lib/md/check';
 import TagsInput from 'components/tagsInput';
-
+import BackButton from 'components/backButton';
 import { BlockButton, IconButton } from '../styles/button';
 import { createProduct } from 'actions';
-import { PageContainer, ScrollableContainer, TopNavbarContainer } from '../styles/index';
+import { PageContainer, ScrollableContainer, TopNavbarContainer } from '../styles';
 
 export class AddProductPage extends Component {
 	state = {
@@ -108,11 +107,7 @@ export class AddProductPage extends Component {
 
 	reset() {
 		this.setState((state) => ({
-			images: [
-				'https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg',
-				'https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg',
-				'https://pbs.twimg.com/profile_images/955376907574427649/aHNuNU8n_400x400.jpg'
-			],
+			images: [],
 			name: '',
 			price: 0,
 			stock: 0,
@@ -127,9 +122,7 @@ export class AddProductPage extends Component {
 		return (
 			<PageContainer>
 				<TopNavbarContainer>
-					<IconButton>
-						<BackIcon size={20} />
-					</IconButton>
+					<BackButton />
 					<span
 						style={{
 							flexGrow: 1,
@@ -202,7 +195,7 @@ export class AddProductPage extends Component {
 							onChange={(e) => this.handleSizeChange(e, i)}
 						/>
 					))}
-					{sizes.length>0 && (
+					{sizes.length > 0 && (
 						<InputBox
 							name="size_type"
 							value={size_type}

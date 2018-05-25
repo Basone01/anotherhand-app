@@ -1,3 +1,3 @@
 import AddProductPage from './addProduct'
-
-export { AddProductPage }
+import HomePage from './home'
+export { AddProductPage,HomePage }
