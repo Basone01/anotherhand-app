@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { PageContainer, ScrollableContainer, TopNavbarContainer } from '../styles/index';
-import { BlockButton, IconButton } from '../styles/button';
+import BackIcon from 'react-icons/lib/md/arrow-back';
+import ImageUploader from 'components/imageUploader';
 import InputBox from 'components/inputBox';
 import InputTextArea from 'components/inputTextArea';
-import TagsInput from 'components/tagsInput';
-import ImageUploader from 'components/imageUploader';
+import React, { Component } from 'react';
 import SizeInput from 'components/sizeInput';
-import BackIcon from 'react-icons/lib/md/arrow-back'
-import SubmitIcon from 'react-icons/lib/md/check'
+import SubmitIcon from 'react-icons/lib/md/check';
+import TagsInput from 'components/tagsInput';
+
+import { BlockButton, IconButton } from '../styles/button';
+import { createProduct } from 'actions';
+import { PageContainer, ScrollableContainer, TopNavbarContainer } from '../styles/index';
+
 export class AddProductPage extends Component {
 	state = {
 		images: [],
@@ -17,7 +20,8 @@ export class AddProductPage extends Component {
 		stock: 0,
 		description: '',
 		tags: [],
-		sizes: []
+		sizes: [],
+		size_type: ''
 	};
 	constructor(props) {
 		super(props);
@@ -81,6 +85,7 @@ export class AddProductPage extends Component {
 
 	submit() {
 		const { sizes, images, name } = this.state;
+		let product = null;
 		if (name === '') {
 			console.error('Name is Required');
 			return;
@@ -89,11 +94,16 @@ export class AddProductPage extends Component {
 			console.error('Image is Required');
 			return;
 		}
-		if (sizes.filter((size) => size.size === '').length > 0) {
-			console.error('Size is Required');
-			return;
+		if (sizes.filter((size) => size.size !== '').length > 0) {
+			// console.error('Size is Required');
+			// return;
+			const { stock, ...rest } = this.state;
+			product = rest;
+		} else {
+			const { sizes, ...rest } = this.state;
+			product = rest;
 		}
-		console.log(this.state);
+		this.props.createProduct(product);
 	}
 
 	reset() {
@@ -113,11 +123,13 @@ export class AddProductPage extends Component {
 	}
 
 	render() {
-		const { images, description, tags, sizes, name, price, stock } = this.state;
+		const { images, description, tags, sizes, name, price, stock, size_type } = this.state;
 		return (
 			<PageContainer>
 				<TopNavbarContainer>
-					<IconButton><BackIcon size={20}/></IconButton>
+					<IconButton>
+						<BackIcon size={20} />
+					</IconButton>
 					<span
 						style={{
 							flexGrow: 1,
@@ -126,7 +138,9 @@ export class AddProductPage extends Component {
 					>
 						เพิ่มสินค้าใหม่
 					</span>
-					<IconButton onClick={() => this.submit()}><SubmitIcon size={20}/></IconButton>
+					<IconButton onClick={() => this.submit()}>
+						<SubmitIcon size={20} />
+					</IconButton>
 				</TopNavbarContainer>
 				<ScrollableContainer>
 					<ImageUploader
@@ -188,6 +202,15 @@ export class AddProductPage extends Component {
 							onChange={(e) => this.handleSizeChange(e, i)}
 						/>
 					))}
+					{sizes.length>0 && (
+						<InputBox
+							name="size_type"
+							value={size_type}
+							prefix="หน่วยไซส์ :"
+							placeholder="ใส่หน่วยให้กับสินค้าของท่าน (ถ้ามี)"
+							onChange={this.handleInputChange}
+						/>
+					)}
 					<BlockButton onClick={this.reset}>ล้างข้อมูล</BlockButton>
 				</ScrollableContainer>
 			</PageContainer>
@@ -197,6 +220,8 @@ export class AddProductPage extends Component {
 
 const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+	createProduct: (product) => dispatch(createProduct(product))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProductPage);
