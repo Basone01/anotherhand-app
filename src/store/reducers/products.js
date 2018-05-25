@@ -7,7 +7,7 @@ const initalState = {
 	errorMessage: ''
 };
 
-export const addProductReducer = (state = initalState, { type, payload }) => {
+export const productReducer = (state = initalState, { type, payload }) => {
 	switch (type) {
 		case types.FETCH_PRODUCTS:
 			return { ...state, isLoading: true };
@@ -20,4 +20,4 @@ export const addProductReducer = (state = initalState, { type, payload }) => {
 	}
 };
 
-export default addProductReducer;
+export default productReducer;
