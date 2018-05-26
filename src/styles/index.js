@@ -19,13 +19,23 @@ const ScrollBarStyle = css`
     }
   }
 `;
-export const ScrollableContainer = styled.div`
+
+export const JustFlex = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
+  
+`;
+
+export const MainContainer = styled.div`
+  display: flex;
   flex-grow: 1;
   background-color: #fff;
+  flex-direction: column;
+
+`
+
+export const ScrollableContainer = MainContainer.extend`
+  align-items: stretch;
+  justify-content: flex-start;
   overflow-x: hidden;
   overflow-y: scroll;
   ${ScrollBarStyle} &>* {
@@ -33,12 +43,10 @@ export const ScrollableContainer = styled.div`
   }
 `;
 
-export const HorizontalScrollableContainer = styled.div`
+export const HorizontalScrollableContainer = MainContainer.extend`
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
-  flex-grow: 1;
-  background-color: #fff;
   overflow-y: hidden;
   overflow-x: scroll;
   ${ScrollBarStyle} &>* {
