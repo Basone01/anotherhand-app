@@ -47,6 +47,7 @@ export const HorizontalScrollableContainer = styled.div`
 `;
 
 export const PageContainer = styled.div`
+background-color:#fff;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -106,6 +107,8 @@ export const TopNavbarContainer = BaseNavbarContainer.extend`
   right: 0;
   padding: 0 12px;
 `;
+
+
 
 export * from './css'
 export * from './button'
