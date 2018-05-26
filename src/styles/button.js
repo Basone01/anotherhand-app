@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import {basicButton} from './css'
+import {baseButton} from './css'
+import {Link} from 'react-router-dom'
 export const BlockButton = styled.a`
-	${basicButton};
+	${baseButton};
 	min-height: 36px;
 	background-color: white;
 	border: 1px solid rgba(0, 0, 0, 0.3);
@@ -13,7 +14,7 @@ export const BlockButton = styled.a`
 `;
 
 export const IconButton = styled.a`
-	${basicButton};
+	${baseButton};
 	width: 32px;
 	height: 32px;
 	transition: color 0.25s;
@@ -21,3 +22,12 @@ export const IconButton = styled.a`
 		color: white;
 	}
 `;
+export const LinkButton = styled(Link)`
+	${baseButton};
+	padding:8px;
+	text-decoration:none;
+	&:visited{
+		color:inherit;
+	}
+
+`
