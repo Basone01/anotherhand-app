@@ -9,6 +9,7 @@ class App extends Component {
 				<Switch>
 					<Route exact path="/" component={ProductStockPage} />
 					<Route exact path="/add" component={AddProductPage} />
+					<Route exact path="/product/:id" component={AddProductPage} />
 					<Redirect to="/" />
 				</Switch>
 			</AppContainer>
