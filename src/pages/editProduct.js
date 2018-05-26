@@ -18,7 +18,7 @@ import {
   TopNavbarContainer
 } from "../styles";
 
-export class AddProductPage extends Component {
+export class EditProductPage extends Component {
   state = {
     _id: null,
     images: [],
@@ -28,7 +28,9 @@ export class AddProductPage extends Component {
     description: "",
     tags: [],
     sizes: [],
-    size_type: ""
+    size_type: "",
+    loading: false,
+    defaultData: null
   };
   constructor(props) {
     super(props);
@@ -43,7 +45,32 @@ export class AddProductPage extends Component {
     this.reset = this.reset.bind(this);
   }
 
-  
+  async componentDidMount() {
+    const { match, products } = this.props;
+    let product = null;
+    if (!products || !products.length) {
+      this.setState({ loading: true });
+      const { data } = await getProductById(match.params.id);
+      product = {
+        ...data,
+        images_path: data.images_path.map(
+          image_path => IMAGE_ENDPOINT + image_path
+        )
+      };
+    } else {
+      product = products.find(product => product._id === match.params.id);
+    }
+    const { images_path, ...rest } = product;
+    this.setState(state => ({
+      ...rest,
+      images: images_path,
+      defaultData: {
+        ...rest,
+        images: images_path
+      }
+    }));
+    this.setState({ loading: false });
+  }
 
   handleImageChange(newImage) {
     this.setState(({ images }) => ({
@@ -126,7 +153,9 @@ export class AddProductPage extends Component {
       sizes: [],
       _id: null
     }));
-    
+    if (this.props.match.url !== "/add") {
+      this.props.history.push("/add");
+    }
   }
 
   render() {
@@ -248,5 +277,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withRouter(AddProductPage)
+  withRouter(EditProductPage)
 );
