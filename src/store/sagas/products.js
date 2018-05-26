@@ -3,7 +3,6 @@ import { getProducts, createProduct } from 'src/api';
 import * as types from '../types';
 
 function* fetchProductsWorker(a) {
-	console.log(a);
 	try {
 		const { data } = yield call(getProducts);
 		console.log(data);
