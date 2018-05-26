@@ -26,6 +26,7 @@ export const LinkButton = styled(Link)`
 	${baseButton};
 	padding:8px;
 	text-decoration:none;
+	color:inherit;
 	&:visited{
 		color:inherit;
 	}
