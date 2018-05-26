@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { fadeOnHover, mousePointer, roundedBoxShadow } from "styles/css";
-import { IMAGE_ENDPOINT } from "../config";
 import { withRouter } from "react-router-dom";
 
 const ProductListItemBox = styled.li`
@@ -59,7 +58,7 @@ const ProductListItem = ({
       history.push(`/product/${_id}`);
     }}
   >
-    <ProductImage src={IMAGE_ENDPOINT + images_path} alt="name" />
+    <ProductImage src={images_path[0]} alt="name" />
     <ProductDetailSide>
       <h5 style={{ borderBottom: "1px solid rgba(0,0,0,0.5)" }}>{name}</h5>
       {sizes.length > 0 ? (
