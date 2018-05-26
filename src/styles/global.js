@@ -1,7 +1,12 @@
-import { injectGlobal } from 'styled-components';
-import styledNormalize from 'styled-normalize';
+import { injectGlobal } from "styled-components";
+import styledNormalize from "styled-normalize";
 injectGlobal`
+    
     ${styledNormalize}
+    :root{
+        --color-danger:rgba(222,0,0,0.9); 
+        --color-shadow:rgba(0,0,0,0.5);
+    }
     body{
         font-family: 'Helvetica, sans-serif';        
         background-color:hsla(290,60%,70%,0.3);
