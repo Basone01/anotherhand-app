@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import {mousePointer} from './animate';
+import {mousePointer, fadeOnHover} from './animate';
 export const boxShadow = css`
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
 `;
@@ -25,9 +25,10 @@ export const inputReset = css`
   }
 `;
 
-export const basicButton = css`
+export const baseButton = css`
   display: flex;
 	justify-content: center;
 	align-items: center;
   ${mousePointer};
+  ${fadeOnHover}
 `
