@@ -5,18 +5,25 @@ import React, { Component } from "react";
 import ProductList from "../containerComponents/productList";
 import AddIcon from "react-icons/lib/fa/plus-square-o";
 import { LinkButton } from "styles";
-import {
-  TopNavbarContainer,
-  ScrollableContainer,
-  PageContainer,
-  BottomNavbarContainer
-} from "../styles";
+import { TopNavbarContainer, JustFlex, PageContainer, BottomNavbarContainer, MainContainer } from "../styles";
 import ProductSearchBox from "../components/productSearchBox";
+import InputToggle from '../components/inputToggle';
 export class ProductStockPage extends Component {
   static propTypes = {};
   state = {
-    searchValue: ""
+    searchValue: "",
+    filter: {
+      name: true,
+      tags: false
+    }
   };
+
+  constructor(props) {
+    super(props)
+    this.toggleFilter = this.toggleFilter.bind(this)
+  }
+
+
   componentDidMount() {
     this.props.fetchProducts();
   }
@@ -27,41 +34,52 @@ export class ProductStockPage extends Component {
     }));
   }
 
+  toggleFilter(key) {
+    this.setState(state => ({
+      ...state,
+      filter: {
+        ...state.filter,
+        [key]: !state.filter[key]
+      }
+    }))
+  }
+
   render() {
-    const { searchValue } = this.state;
-    const { products } = this.props;
-    const filteredProducts = products.filter(({ name, tags }) => {
+    const {searchValue, filter} = this.state;
+    const {products} = this.props;
+    const filteredProducts = (filter.name || filter.tags) ? products.filter(({name, tags}) => {
       const lowerValue = searchValue.toLowerCase();
       return (
-        name.toLowerCase().includes(lowerValue) ||
-        tags
+        (filter.name && name.toLowerCase().includes(lowerValue)) ||
+        (filter.tags && tags
           .join("")
           .toLowerCase()
           .includes(lowerValue)
-      );
-    });
+        ));
+    }) : products;
     return (
       <PageContainer>
         <TopNavbarContainer>
           สินค้าของคุณ
           <LinkButton to="/add">
-              <AddIcon size={18} />
+            <AddIcon size={ 18 } />
           </LinkButton>
         </TopNavbarContainer>
-        <ScrollableContainer>
-          <ProductSearchBox
-            value={searchValue}
-            onChange={e => this.handleSearchChange(e.target.value)}
-          />
-          <ProductList products={filteredProducts} />
-        </ScrollableContainer>
+        <MainContainer>
+          <JustFlex style={ { flexShrink: 0 } }>
+            <ProductSearchBox style={ { flex: 1 } } value={ searchValue } onChange={ e => this.handleSearchChange(e.target.value) } />
+            <InputToggle value={ filter.name } onChange={ () => this.toggleFilter('name') }>Name</InputToggle>
+            <InputToggle value={ filter.tags } onChange={ () => this.toggleFilter('tags') }>Tags</InputToggle>
+          </JustFlex>
+          <ProductList products={ filteredProducts } />
+        </MainContainer>
         <BottomNavbarContainer />
       </PageContainer>
-    );
+      );
   }
 }
 
-const mapStateToProps = ({ product }) => ({
+const mapStateToProps = ({product}) => ({
   ...product
 });
 
