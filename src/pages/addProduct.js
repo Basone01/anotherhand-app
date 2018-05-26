@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { createProduct } from "actions";
+import { createProduct, redirectSuccess } from "actions";
 import BackButton from "components/backButton";
 import ImageUploader from "components/imageUploader";
 import InputBox from "components/inputBox";
@@ -8,16 +8,13 @@ import React, { Component } from "react";
 import SizeInput from "components/sizeInput";
 import SubmitIcon from "react-icons/lib/md/check";
 import TagsInput from "components/tagsInput";
-import { withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { BlockButton, IconButton } from "../styles/button";
-import { getProductById } from "../api";
-import { IMAGE_ENDPOINT } from "../config";
 import {
   PageContainer,
   ScrollableContainer,
   TopNavbarContainer
 } from "../styles";
-
 export class AddProductPage extends Component {
   state = {
     _id: null,
@@ -28,7 +25,8 @@ export class AddProductPage extends Component {
     description: "",
     tags: [],
     sizes: [],
-    size_type: ""
+    size_type: "",
+    redirect: null
   };
   constructor(props) {
     super(props);
@@ -43,7 +41,12 @@ export class AddProductPage extends Component {
     this.reset = this.reset.bind(this);
   }
 
-  
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.redirect) {
+      this.setState({ redirect: nextProps.redirect });
+      this.props.redirectSuccess()
+    }
+  };
 
   handleImageChange(newImage) {
     this.setState(({ images }) => ({
@@ -104,8 +107,6 @@ export class AddProductPage extends Component {
       return;
     }
     if (sizes.filter(size => size.size !== "").length > 0) {
-      // console.error('Size is Required');
-      // return;
       const { stock, ...rest } = this.state;
       product = rest;
     } else {
@@ -126,7 +127,6 @@ export class AddProductPage extends Component {
       sizes: [],
       _id: null
     }));
-    
   }
 
   render() {
@@ -139,9 +139,13 @@ export class AddProductPage extends Component {
       price,
       stock,
       size_type,
-      loading
+      loading,
+      redirect
     } = this.state;
-    return (
+    console.log(redirect);
+    return redirect ? (
+      <Redirect to={redirect} />
+    ) : (
       <PageContainer>
         <TopNavbarContainer>
           <BackButton />
@@ -231,7 +235,6 @@ export class AddProductPage extends Component {
                 onChange={this.handleInputChange}
               />
             )}
-            <BlockButton onClick={this.reset}>ล้างข้อมูล</BlockButton>
           </ScrollableContainer>
         )}
       </PageContainer>
@@ -239,14 +242,17 @@ export class AddProductPage extends Component {
   }
 }
 
-const mapStateToProps = ({ product }) => ({
-  products: product.products
+const mapStateToProps = ({
+  product: { products, addSuccess },
+  app: { redirect }
+}) => ({
+  products,
+  redirect
 });
 
 const mapDispatchToProps = dispatch => ({
-  createProduct: product => dispatch(createProduct(product))
+  createProduct: product => dispatch(createProduct(product)),
+  redirectSuccess: () => dispatch(redirectSuccess())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withRouter(AddProductPage)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(AddProductPage);

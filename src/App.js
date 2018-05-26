@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { AppContainer } from "./styles";
-import {
-  AddProductPage,
-  HomePage,
-  ProductStockPage,
-  EditProductPage
-} from "./pages";
+import { AddProductPage, ProductStockPage, EditProductPage } from "./pages";
 import { Route, Redirect, Switch } from "react-router-dom";
+import Loading from "./components/loading";
+import { connect } from "react-redux";
+
+const WrappedLoadingSpinner = connect(({ app }) => ({
+  isLoading: app.isLoading
+}))(({ isLoading }) => isLoading&&<Loading />);
+
 class App extends Component {
   render() {
     return (
       <AppContainer>
+        <WrappedLoadingSpinner />
         <Switch>
           <Route exact path="/" component={ProductStockPage} />
           <Route exact path="/add" component={AddProductPage} />

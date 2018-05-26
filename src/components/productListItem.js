@@ -89,7 +89,7 @@ const ProductListItem = ({
       )}
 
       <PriceBox>
-        <h4>{price} ฿</h4>
+        <h4>{sizes.length > 0 ?sizes[0].price:price} ฿</h4>
       </PriceBox>
     </ProductDetailSide>
   </ProductListItemBox>

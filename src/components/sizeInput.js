@@ -11,7 +11,7 @@ const RemoveButton = styled.a`
 	width: 48px;
 	justify-content: center;
 	align-items: center;
-	background-color: red;
+	background-color: var(--color-danger);
 	user-select: none;
 	cursor: pointer;
 	color: white;
