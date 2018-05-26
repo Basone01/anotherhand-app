@@ -1,4 +1,6 @@
+// const host = "https://d7a2f10b.ngrok.io"
+const host = "localhost"
 module.exports = {
-	API_ENDPOINT: process.env.NODE_ENV === 'development' ? 'http://c62958be.ngrok.io/api' : '/api',
-	IMAGE_ENDPOINT:process.env.NODE_ENV === 'development' ?'http://c62958be.ngrok.io' : ''
+	API_ENDPOINT: process.env.NODE_ENV === 'development' ? `http://${host}/api` : '/api',
+	IMAGE_ENDPOINT:process.env.NODE_ENV === 'development' ?`http://${host}` : ''
 };
