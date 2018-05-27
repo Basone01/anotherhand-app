@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { createProduct } from "actions";
+import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import BackButton from "components/backButton";
 import ImageUploader from "components/imageUploader";
@@ -9,14 +10,16 @@ import React, { Component } from "react";
 import SizeInput from "components/sizeInput";
 import SubmitIcon from "react-icons/lib/md/check";
 import TagsInput from "components/tagsInput";
-import { Redirect } from "react-router-dom";
+
 import { BlockButton, IconButton } from "../styles/button";
 import { getProductById } from "../api";
 import { IMAGE_ENDPOINT } from "../config";
+
 import {
   hideLoadingSpinner,
   displayLoadingSpinner,
   updateProduct,
+  deleteProduct,
   redirectSuccess
 } from "actions";
 import {
@@ -187,7 +190,7 @@ export class EditProductPage extends Component {
             <SubmitIcon size={20} />
           </IconButton>
         </TopNavbarContainer>
-        <ScrollableContainer style={{flexGrow:1}}>
+        <ScrollableContainer style={{ flexGrow: 1 }}>
           <ImageUploader
             images={images}
             onRemove={this.handleImageRemove}
@@ -277,6 +280,7 @@ const mapStateToProps = ({ product: { products }, app: { redirect } }) => ({
 
 const mapDispatchToProps = dispatch => ({
   updateProduct: product => dispatch(updateProduct(product)),
+  deleteProduct: _id => dispatch(deleteProduct(_id)),
   hideLoadingSpinner: () => dispatch(hideLoadingSpinner()),
   displayLoadingSpinner: () => dispatch(displayLoadingSpinner()),
   redirectSuccess: () => dispatch(redirectSuccess())

@@ -94,15 +94,16 @@ const BaseNavbarContainer = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  justify-content: space-between;
-  max-height: 42px;
   min-height: 42px;
+  flex-grow:0;
+  flex-shrink:0;
   background-color: #eee;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
   z-index: 10;
 `;
 
 export const BottomNavbarContainer = BaseNavbarContainer.extend`
+  justify-content: center;
   bottom: 0;
   left: 0;
   right: 0;
@@ -110,6 +111,7 @@ export const BottomNavbarContainer = BaseNavbarContainer.extend`
 `;
 
 export const TopNavbarContainer = BaseNavbarContainer.extend`
+  justify-content: space-between;
   top: 0;
   left: 0;
   right: 0;
