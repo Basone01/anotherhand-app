@@ -9,11 +9,16 @@ import React, { Component } from "react";
 import SizeInput from "components/sizeInput";
 import SubmitIcon from "react-icons/lib/md/check";
 import TagsInput from "components/tagsInput";
-
+import { Redirect } from "react-router-dom";
 import { BlockButton, IconButton } from "../styles/button";
 import { getProductById } from "../api";
 import { IMAGE_ENDPOINT } from "../config";
-import { hideLoadingSpinner, displayLoadingSpinner } from "actions";
+import {
+  hideLoadingSpinner,
+  displayLoadingSpinner,
+  deleteProduct,
+  redirectSuccess
+} from "actions";
 import {
   PageContainer,
   ScrollableContainer,
@@ -43,8 +48,15 @@ export class EditProductPage extends Component {
     this.handleSizeRemove = this.handleSizeRemove.bind(this);
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.submit = this.submit.bind(this);
-    this.reset = this.reset.bind(this);
+    this.delete = this.delete.bind(this);
   }
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.redirect) {
+      this.setState({ redirect: nextProps.redirect });
+      this.props.redirectSuccess();
+    }
+  };
 
   async componentDidMount() {
     const { match, products } = this.props;
@@ -138,20 +150,8 @@ export class EditProductPage extends Component {
     this.props.updateProduct(product);
   }
 
-  reset() {
-    this.setState(state => ({
-      images: [],
-      name: "",
-      price: 0,
-      stock: 0,
-      description: "",
-      tags: [],
-      sizes: [],
-      _id: null
-    }));
-    if (this.props.match.url !== "/add") {
-      this.props.history.push("/add");
-    }
+  delete() {
+    this.props.deleteProduct(this.state._id);
   }
 
   render() {
@@ -164,9 +164,12 @@ export class EditProductPage extends Component {
       price,
       stock,
       size_type,
-      loading
+      loading,
+      redirect
     } = this.state;
-    return (
+    return this.props.redirect ? (
+      <Redirect to={redirect} />
+    ) : (
       <PageContainer>
         <TopNavbarContainer>
           <BackButton />
@@ -254,10 +257,10 @@ export class EditProductPage extends Component {
             />
           )}
           <BlockButton
-            onClick={this.reset}
+            onClick={this.delete}
             style={{ backgroundColor: "rgba(222,0,0,0.9)", color: "white" }}
           >
-            ล้างข้อมูล
+            ลบสินค้านี้
           </BlockButton>
         </ScrollableContainer>
       </PageContainer>
@@ -265,14 +268,16 @@ export class EditProductPage extends Component {
   }
 }
 
-const mapStateToProps = ({ product }) => ({
-  products: product.products
+const mapStateToProps = ({ product: { products }, app: { redirect } }) => ({
+  products,
+  redirect
 });
 
 const mapDispatchToProps = dispatch => ({
-  createProduct: product => dispatch(createProduct(product)),
+  deleteProduct: _id => dispatch(deleteProduct(_id)),
   hideLoadingSpinner: () => dispatch(hideLoadingSpinner()),
-  displayLoadingSpinner: () => dispatch(displayLoadingSpinner())
+  displayLoadingSpinner: () => dispatch(displayLoadingSpinner()),
+  redirectSuccess: () => dispatch(redirectSuccess())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(

@@ -24,7 +24,7 @@ export const productReducer = (state = initalState, { type, payload }) => {
       };
       case types.FETCH_PRODUCTS_ERROR:
       return { ...state, error: true, errorMessage: payload };
-      case types.CREATE_PRODUCTS_SUCCESS:
+      case types.CREATE_PRODUCT_SUCCESS:
       return { ...state, addSuccess: true };
     default:
       return state;

@@ -20,9 +20,14 @@ export function createProduct(product) {
     return addPrefixToImagePath(res.data);
   });
 }
-
+export function deleteProduct(_id) {
+  console.log(_id);
+  return axios
+    .delete(`${API_ENDPOINT}/product`, { data: { _id } })
+    .then(res => res.data);
+}
 const addPrefixToImagePath = product => {
-	console.log(product)
+  console.log(product);
   return {
     ...product,
     images_path: product.images_path.map(

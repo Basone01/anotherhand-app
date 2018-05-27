@@ -1,8 +1,13 @@
-import * as types from '../types';
+import * as types from "../types";
 
-export const createProduct = (product) => ({
-	type: types.CREATE_PRODUCTS,
-	payload: product
+export const createProduct = product => ({
+  type: types.CREATE_PRODUCT,
+  payload: product
 });
 
 export const getProducts = () => ({ type: types.FETCH_PRODUCTS });
+
+export const deleteProduct = _id => ({
+  type: types.DELETE_PRODUCT,
+  payload: _id
+});
