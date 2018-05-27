@@ -16,7 +16,7 @@ import { IMAGE_ENDPOINT } from "../config";
 import {
   hideLoadingSpinner,
   displayLoadingSpinner,
-  deleteProduct,
+  updateProduct,
   redirectSuccess
 } from "actions";
 import {
@@ -138,15 +138,17 @@ export class EditProductPage extends Component {
       return;
     }
     if (sizes.filter(size => size.size !== "").length > 0) {
-      // console.error('Size is Required');
-      // return;
       const { stock, ...rest } = this.state;
       product = rest;
     } else {
       const { sizes, ...rest } = this.state;
       product = rest;
     }
-    const { images_path, ...rest } = product;
+
+    product.images = product.images.map(
+      image => (!image.includes("data:") ? image.split("/").pop() : image)
+    );
+
     this.props.updateProduct(product);
   }
 
@@ -179,13 +181,13 @@ export class EditProductPage extends Component {
               textAlign: "center"
             }}
           >
-            เพิ่มสินค้าใหม่
+            แก้ไขสินค้า
           </span>
           <IconButton onClick={() => this.submit()}>
             <SubmitIcon size={20} />
           </IconButton>
         </TopNavbarContainer>
-        <ScrollableContainer>
+        <ScrollableContainer style={{flexGrow:1}}>
           <ImageUploader
             images={images}
             onRemove={this.handleImageRemove}
@@ -274,7 +276,7 @@ const mapStateToProps = ({ product: { products }, app: { redirect } }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteProduct: _id => dispatch(deleteProduct(_id)),
+  updateProduct: product => dispatch(updateProduct(product)),
   hideLoadingSpinner: () => dispatch(hideLoadingSpinner()),
   displayLoadingSpinner: () => dispatch(displayLoadingSpinner()),
   redirectSuccess: () => dispatch(redirectSuccess())

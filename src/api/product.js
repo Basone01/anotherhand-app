@@ -26,6 +26,16 @@ export function deleteProduct(_id) {
     .delete(`${API_ENDPOINT}/product`, { data: { _id } })
     .then(res => res.data);
 }
+
+export function updateProduct(product) {
+  
+  return axios
+    .put(`${API_ENDPOINT}/product`, {  ...product  })
+    .then(res => res.data);
+}
+
+
+
 const addPrefixToImagePath = product => {
   console.log(product);
   return {

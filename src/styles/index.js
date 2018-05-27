@@ -22,7 +22,6 @@ const ScrollBarStyle = css`
 
 export const JustFlex = styled.div`
   display: flex;
-  
 `;
 
 export const MainContainer = styled.div`
@@ -30,8 +29,7 @@ export const MainContainer = styled.div`
   flex-grow: 1;
   background-color: #fff;
   flex-direction: column;
-
-`
+`;
 
 export const ScrollableContainer = MainContainer.extend`
   align-items: stretch;
@@ -45,17 +43,19 @@ export const ScrollableContainer = MainContainer.extend`
 
 export const HorizontalScrollableContainer = MainContainer.extend`
   display: flex;
+  flex-wrap: nowrap;
   align-items: stretch;
   justify-content: flex-start;
   overflow-y: hidden;
   overflow-x: scroll;
-  ${ScrollBarStyle} &>* {
+  ${ScrollBarStyle};
+  & > * {
     flex-shrink: 0;
   }
 `;
 
 export const PageContainer = styled.div`
-background-color:#fff;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -82,8 +82,8 @@ export const AppContainer = styled.div`
   }
   @media screen and (max-width: 480px) {
     width: 100vw;
-	max-width:100vw;
-	max-height:100vh;
+    max-width: 100vw;
+    max-height: 100vh;
     height: 100vh;
     margin: 0;
     border-radius: 0;
@@ -94,7 +94,7 @@ const BaseNavbarContainer = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
   max-height: 42px;
   min-height: 42px;
   background-color: #eee;
@@ -116,7 +116,5 @@ export const TopNavbarContainer = BaseNavbarContainer.extend`
   padding: 0 12px;
 `;
 
-
-
-export * from './css'
-export * from './button'
+export * from "./css";
+export * from "./button";

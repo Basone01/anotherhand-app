@@ -11,3 +11,8 @@ export const deleteProduct = _id => ({
   type: types.DELETE_PRODUCT,
   payload: _id
 });
+
+export const updateProduct = product => ({
+  type: types.UPDATE_PRODUCT,
+  payload: product
+});

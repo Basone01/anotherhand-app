@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const UploadBoxContainer = styled.div `
     display:flex;
-    flex-wrap:wrap;
     align-items:flex-start;
     justify-content:flex-start;
     padding:18px 16px;
     &>*{
+        flex-shrink:0;
         margin-right:12px;
         &:last-child{
             margin-right:0;
